@@ -1,0 +1,60 @@
+<div class="hero-unit">
+
+<h1> Post </h1>
+<br>
+
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <span class="label label-info">Title:</span>
+  <%= @post.title %>
+</p>
+
+<p>
+  <span class="label label-info">Text:</span>
+  <%= @post.text %>
+</p>
+
+<p>
+  <span class="label label-info">Likes:</span>
+  <%= @post.like %>
+</p>
+
+<p>
+  <span class="label label-info">Comments:</span>
+ 
+</p>
+
+
+<% @post.comments.reverse.each do |comment| %>
+	<div clas="field">
+		<%= comment.body %>
+		<%= "---------" %>
+		<%= comment.created_at %><br>
+	</div>	
+
+
+<% end %>
+
+<br>
+<%= form_for([@post,@post.comments.build]) do |f| %>
+
+  <div class="field">
+    <%= f.label "Comment" %>
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+
+
+<%= link_to 'Like', like_post_path(@post), :class => "btn btn-link" %> |
+<%= link_to 'DisLike', dislike_post_path(@post), :class => "btn btn-link" %> |
+<%= link_to 'Edit', edit_post_path(@post), :class => "btn btn-link" %> |
+<%= link_to 'Back', administrative_post_path, :class => "btn btn-link" %>
+
+</div>

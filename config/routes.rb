@@ -1,9 +1,18 @@
 Blog::Application.routes.draw do
+  resources :posts do
+    resources :comments
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  get '/report' => 'posts#report', :as => 'report_post'
+   get '/administrative' => 'posts#administrative', :as => 'administrative_post'
+   get '/administrative/like_post/:id' => 'posts#like_post', :as => 'like_post' #vista controlador
+   get '/administrative/dislike_post/:id' => 'posts#dislike_post', :as => 'dislike_post'
+   get '/posts/destroy/:id' => 'posts#destroy'  
+
+   root 'posts#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
