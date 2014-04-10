@@ -17,6 +17,7 @@
     <tr>
       <th>Title</th>
       <th>Text</th>
+      <th>Category</th>
       <th>Date</th>
       <th>Likes</th>
       <th></th>
@@ -30,6 +31,7 @@
       <tr>
         <td><%= link_to post.title, post, :class =>"btn btn-link" %></td>
         <td><%= post.text %></td>
+        <td><%= post.category %></td>
         <td><%= post.created_at.to_date %></td>
 
         <td><span class="badge badge-info"><%= post.like %></span></td>

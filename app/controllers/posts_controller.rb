@@ -85,12 +85,20 @@ class PostsController < ApplicationController
   end
 
   def dislike_post
-    @post.like-=1
-    if @post.save
-      redirect_to administrative_post_path, notice: 'no te ha gustado'
+    if @post.like>1
+      @post.like-=1      
     else
-      render 'administrative'
+      @post.like=0
     end
+
+
+        if @post.save
+          redirect_to administrative_post_path, notice: 'no te ha gustado'
+        else
+          render 'administrative'
+        end
+    
+
   end
 
   def report
@@ -105,6 +113,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :text)
+      params.require(:post).permit(:title, :text, :category)
     end
 end
